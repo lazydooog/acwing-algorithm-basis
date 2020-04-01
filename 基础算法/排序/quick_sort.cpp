@@ -2,7 +2,7 @@
  * @Description: 快速排序模板 / 交换实现
  * @Author: Xiaobin Ren
  * @Date: 2020-04-01 11:01:00
- * @LastEditTime: 2020-04-01 11:02:07
+ * @LastEditTime: 2020-04-01 15:41:32
  */
 
 #include <bits/stdc++.h>
@@ -32,7 +32,7 @@ void quick_sort(int q[], int l, int r)
 {
     if (l >= r) return;
 
-    int i = l - 1, j = r + 1, x = q[l + r >> 1];
+    int i = l - 1, j = r + 1, x = q[l + ((r - l) >> 1)];
     while (i < j)
     {
         do i ++ ; while (q[i] < x);
@@ -48,6 +48,12 @@ int main(int argc, char const *argv[]){
   //ios::sync_with_stdio(false);
   //cin.tie(0);
 
+    int n, i = 0;
+    scanf("%d", &n);
+    int a[100005];
+    for (int i = 0; i < n; i++) scanf("%d", &a[i]);
+    quick_sort(a, 0, n-1);
+    for(int i = 0; i < n; i++) printf("%d ",a[i]);
     
     return 0;
 }

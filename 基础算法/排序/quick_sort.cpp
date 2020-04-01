@@ -2,7 +2,7 @@
  * @Description: 快速排序模板 / 交换实现
  * @Author: Xiaobin Ren
  * @Date: 2020-04-01 11:01:00
- * @LastEditTime: 2020-04-01 15:41:32
+ * @LastEditTime: 2020-04-01 16:59:43
  */
 
 #include <bits/stdc++.h>
@@ -44,6 +44,7 @@ void quick_sort(int q[], int l, int r)
 
 
 
+//test
 int main(int argc, char const *argv[]){
   //ios::sync_with_stdio(false);
   //cin.tie(0);

@@ -2,7 +2,7 @@
  * @Description: 791. 高精度加法
  * @Author: Xiaobin Ren
  * @Date: 2020-04-01 21:00:12
- * @LastEditTime: 2020-04-02 10:35:41
+ * @LastEditTime: 2020-04-02 10:43:48
  */
 
 #include <iostream>
@@ -21,7 +21,7 @@ vector<int> add(vector<int> &a, vector<int> &b){
         c.push_back(t % 10);
         t /= 10;
     }
-    if(t) c.push_back(1);
+    if(t) c.push_back(1);  //最后的进位
     return c;
 }
 

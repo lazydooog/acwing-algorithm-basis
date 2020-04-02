@@ -1,10 +1,29 @@
 /*
- * @Description: 792. 高精度减法
+ * @Description: 高精度减法模板
  * @Author: Xiaobin Ren
- * @Date: 2020-04-01 21:00:28
- * @LastEditTime: 2020-04-02 15:22:15
+ * @Date: 2020-04-02 15:22:35
+ * @LastEditTime: 2020-04-02 15:25:03
  */
 
+// C = A - B, 满足A >= B, A >= 0, B >= 0
+//如果不不满足，则在main的输入输出处理一下就可以了
+vector<int> sub(vector<int> &A, vector<int> &B)
+{
+    vector<int> C;
+    for (int i = 0, t = 0; i < A.size(); i ++ )
+    {
+        t = A[i] - t;
+        if (i < B.size()) t -= B[i];
+        C.push_back((t + 10) % 10);
+        if (t < 0) t = 1;
+        else t = 0;
+    }
+
+    while (C.size() > 1 && C.back() == 0) C.pop_back();
+    return C;
+}
+
+//完整实现：
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -50,3 +69,7 @@ int main(){
      
     return 0;
 }
+
+
+
+

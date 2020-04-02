@@ -2,7 +2,7 @@
  * @Description: 高精度加法模板
  * @Author: Xiaobin Ren
  * @Date: 2020-04-02 10:36:12
- * @LastEditTime: 2020-04-02 10:42:36
+ * @LastEditTime: 2020-04-02 10:46:30
  */
 
 /*
@@ -14,6 +14,22 @@
     人工是从右往左进位，数组模拟从左往右进位
 */
 
+//板子1
+vector<int> add(vector<int> &a, vector<int> &b){
+    vector<int> c;  //答案
+    int t = 0;  //进位标记
+    for(int i = 0; i< a.size() || i<b.size(); i++){
+        if(i < a.size()) t+=a[i];
+        if(i < b.size()) t+=b[i];
+        c.push_back(t % 10);
+        t /= 10;
+    }
+    if(t) c.push_back(1);
+    return c;
+}
+
+
+//板子2
 // C = A + B, A >= 0, B >= 0
 vector<int> add(vector<int> &A, vector<int> &B)
 {

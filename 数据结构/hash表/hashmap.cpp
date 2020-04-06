@@ -2,7 +2,7 @@
 * @Description: 哈希表模板
 * @Author: Xiaobin Ren
 * @Date:   2020-04-06 20:30:08
-* @Last Modified time: 2020-04-06 20:30:41
+* @Last Modified time: 2020-04-06 22:18:04
 */
 
 //(1) 拉链法
@@ -11,7 +11,7 @@
     // 向哈希表中插入一个数
     void insert(int x)
     {
-        int k = (x % N + N) % N;
+        int k = (x % N + N) % N;  //防止负数 c++中负数取模依然是负数
         e[idx] = x;
         ne[idx] = h[k];
         h[k] = idx ++ ;

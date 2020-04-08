@@ -96,3 +96,7 @@ bitset, 圧位
     reset()  把所有位变成0
     flip()  等价于~
     flip(k) 把第k位取反
+    bitset可以直接cout输出当前的二进制表示
+    flip(k) 这个位置是从右往左计算的
+    细节注意：取反之类的位运算，要bs = ~bs;才有效
+    直接 ~bs 不会更改原来的bitset 

@@ -2,7 +2,7 @@
 * @Description: 841. 字符串哈希
 * @Author: Xiaobin Ren
 * @Date:   2020-04-08 11:54:05
-* @Last Modified time: 2020-04-08 12:32:44
+* @Last Modified time: 2020-04-08 12:35:18
 */
 
 #include <iostream>
@@ -26,7 +26,7 @@ int main(){
 	p[0] = 1;
 	for(int i = 1; i <= n; i++){
 		p[i] = p[i - 1] * P;
-		h[i] = h[i-1] * P + str[i];  //哈希函数
+		h[i] = h[i-1] * P + str[i];  //哈希函数 求出字符串的前缀哈希
 	}
 	while(m--){
 		int l1, r1, l2, r2;

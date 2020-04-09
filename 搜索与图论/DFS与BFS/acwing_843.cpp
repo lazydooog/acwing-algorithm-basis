@@ -2,7 +2,7 @@
 * @Description: 843. n皇后问题
 * @Author: Xiaobin Ren
 * @Date:   2020-04-09 10:51:23
-* @Last Modified time: 2020-04-09 10:57:31
+* @Last Modified time: 2020-04-09 11:05:10
 */
 
 #include <iostream>
@@ -22,7 +22,10 @@ void dfs(int u){
 	}
 
 	for(int i  = 0; i < n; i++)
-		if(!col[i] && !dg[u+i] && !udg[n - u + i]){
+		if(!col[i] && !dg[u+i] && !udg[n - u + i]){  
+		//这里处理对角线的思路是用y轴的截距来判整个对角线
+		//因为同一个对角线的截距都相同
+		// n - u + i 由于左对角线截距可能为负值，但是数组下标不能为负，加上n全部偏移，结果不影响
 			g[u][i] = 'Q';
 			col[i] = dg[u+i] = udg[n-u+i] = true;
 			dfs(u + 1);

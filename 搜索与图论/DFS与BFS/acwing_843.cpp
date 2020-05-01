@@ -2,7 +2,7 @@
 * @Description: 843. n皇后问题
 * @Author: Xiaobin Ren
 * @Date:   2020-04-09 10:51:23
-* @Last Modified time: 2020-04-09 11:05:10
+* @Last Modified time: 2020-04-09 11:58:20
 */
 
 #include <iostream>
@@ -14,7 +14,7 @@ const int N = 20;
 int n; char g[N][N];
 bool col[N], dg[N], udg[N]; //列 左对角线 右对角线
 
-void dfs(int u){
+void dfs(int u){  //复杂度 O(n!)
 	if(u == n){
 		for(int i = 0; i < n; i++) puts (g[i]);
 			puts("");
@@ -32,6 +32,10 @@ void dfs(int u){
 			col[i] = dg[u+i] = udg[n-u+i] = false;  //恢复现场
 			g[u][i] = '.';
 		}
+}
+
+void dfs(int x, int y, int s){ //挨个暴力搜索，复杂度 2^(n^2)
+
 }
 
 int main(){

@@ -25,3 +25,18 @@ vector<int> mul(vector<int> &A, int b)
 
     return C;
 }
+
+//第二种写法 高精度加压位 无返回值 
+//如果压9位 1e9就用 long long vector来存结果
+void mul(vector<int> & a, int b){
+    int t = 0;
+    for(int i = 0; i < a.size(); i++){
+        a[i]  = a[i] * b + t;
+        t = a[i] / 10000;
+        a[i] %= 10000;
+    }
+    while(t){
+        a.push_back(t % 10000);
+        t /= 10000;
+    }
+}

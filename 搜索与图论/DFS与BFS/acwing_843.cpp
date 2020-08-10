@@ -2,7 +2,7 @@
 * @Description: 843. n皇后问题
 * @Author: Xiaobin Ren
 * @Date:   2020-04-09 10:51:23
-* @Last Modified time: 2020-04-09 11:58:20
+* @Last Modified time: 2020-08-10 20:54:30
 */
 
 #include <iostream>
@@ -32,10 +32,6 @@ void dfs(int u){  //复杂度 O(n!)
 			col[i] = dg[u+i] = udg[n-u+i] = false;  //恢复现场
 			g[u][i] = '.';
 		}
-}
-
-void dfs(int x, int y, int s){ //挨个暴力搜索，复杂度 2^(n^2)
-
 }
 
 int main(){

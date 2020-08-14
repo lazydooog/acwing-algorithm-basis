@@ -2,7 +2,7 @@
 * @Description: 线性筛法
 * @Author: Xiaobin Ren
 * @Date:   2020-08-14 19:27:57
-* @Last Modified time: 2020-08-14 20:06:34
+* @Last Modified time: 2020-08-14 20:07:38
 */
 #include <iostream>
 #include <algorithm>

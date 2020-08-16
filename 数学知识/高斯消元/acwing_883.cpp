@@ -2,7 +2,7 @@
 * @Description: 883. 高斯消元解线性方程组
 * @Author: Xiaobin Ren
 * @Date:   2020-08-16 15:32:01
-* @Last Modified time: 2020-08-16 15:32:10
+* @Last Modified time: 2020-08-16 16:09:17
 */
 #include <iostream>
 #include <algorithm>
@@ -13,6 +13,15 @@ const int N = 110;
 const double eps = 1e-6;
 double a[N][N];
 int n;
+
+void out(){ //debug
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n + 1; j++){
+            printf("%.2f\t", a[i][j]);
+        }
+        puts("");
+    }
+}
 
 int gauss(){
     int c, r;  //列和行
@@ -39,6 +48,8 @@ int gauss(){
         return 1;//无穷多解
     }
     //有唯一解 将增广矩阵化为简化阶梯矩阵 每行最后一个元素就是唯一解了
+    //这里就是把每行 元素 1 后边的非0元素全部改为0  每行的1将该1所在列上方元素全部消成0
+    //但是事实上并没有消 只对于每行的最后一个元素在模拟这个过程 输出最后的矩阵 不是简化阶梯矩阵
      for (int i = n - 1; i >= 0; i -- )
         for (int j = i + 1; j < n; j ++ )
             a[i][n] -= a[i][j] * a[j][n];
@@ -54,6 +65,7 @@ int main(){
             
     int t = gauss();
     if(t == 0){
+        //out(); //debug
         for(int i = 0; i < n; i++) printf("%.2f\n", a[i][n]);  //最后矩阵系数都是1 最后列常数列就是解
     }else if(t == 1) puts("Infinite group solutions");  //无数解
     else puts("No solution");  //无解

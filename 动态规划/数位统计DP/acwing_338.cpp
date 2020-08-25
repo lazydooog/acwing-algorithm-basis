@@ -2,7 +2,7 @@
 * @Description: 338. 计数问题
 * @Author: Xiaobin Ren
 * @Date:   2020-08-25 19:58:47
-* @Last Modified time: 2020-08-25 19:58:54
+* @Last Modified time: 2020-08-25 20:02:26
 */
 #include <iostream>
 #include <algorithm>
@@ -39,6 +39,7 @@ int count(int n, int x){  //统计 1 ~ n 里面有多少个 x 题目的a ,b 范�
     n = num.size(); //数字n的位数
     //假设数字为 abc d efg  分为 d前面的 < abc  以及等于  abc 讨论 
     int res = 0;
+    
     for(int i = n - 1 - !x; i >= 0; i --){ //从最高位枚举 计数 当x == 0时候就从第二位开始枚举 因为最高位n - 1不可能是0
         if(i < n - 1) {
             res += get(num, n - 1, i + 1) * power(i); //计算 i 前面的数字  注意vector存放的数字是反的

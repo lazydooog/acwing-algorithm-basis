@@ -1,27 +1,24 @@
-/*
-* @Description: 240. 食物链
-* @Author: Xiaobin Ren
-* @Date:   2020-08-09 22:15:29
-* @Last Modified time: 2020-08-09 22:15:44
-*/
 #include <iostream>
 using namespace std;
 
 /*
-    思路 ： 维护到根节点的距离的并查集 路径压缩时候会更新距离 
-    
-    
+    思路 ： 维护到根节点的距离的并查集 路径压缩时候会更新距离
+
+    维护集合：当询问的时候，首先看两个点是否在同一个集合，如果在，就判断是否矛盾为假
+    如果不在，那就当真处理，按照真的条件来合并集合同时更新root的距离，因为和之前的不矛盾。
+    题意为”当前的话与前面的某些真的话冲突，才是假话“
+
     维护距离：
         因为物种是3类 所以将节点到根节点的距离模3 分为3类
         如果 取模之后为0 那么就和根节点同类
-        取模之后为1 就 吃根节点 取模之后为 2 就环形接上 被根节点吃 同时吃 1 节点 
-        
+        取模之后为1 就 吃根节点 取模之后为 2 就环形接上 被根节点吃 同时吃 1 节点
+
         解决的过程 就是要把所有节点都合并到同一个集合里面 最终，
         因为任意2节点和根节点的距离 ，模3就可以知道这俩节点的关系
-        
+
         在合并的过程中 分为两节点已经在一起 而且已经是同类的话 就判断距离。
         是同类 而且不在一个集合 那么就合并。
-        
+
         对于x 吃 y 的关系 同样如果在同一个集合 那么必须距离满足模3 大小差1 的条件 不然就是假话
         不在同一个集合 那就合并 同时维护满足关系的距离条件即可
 */
@@ -31,9 +28,9 @@ int p[N], d[N];
 
 int n, m;
 
-int find(int x){
+int find(int x) { //每次find都会路径压缩 重新更新该条路径所有的d[]
 
-    if(x!= p[x]){
+    if (x != p[x]) {
         int u = find(p[x]);
         d[x] += d[p[x]];
         p[x] = u;
@@ -41,38 +38,36 @@ int find(int x){
     return p[x];
 }
 
-int main(){
+int main() {
     cin >> n >> m;
-    for(int i = 1; i <= n; i++){
+    for (int i = 1; i <= n; i++) {
         p[i] = i;
         d[i] = 0; //可以不写 全局变量默认
     }
-    
+
     int res = 0;
-    while(m --){
+    while (m --) {
         int t, x, y;
         cin >> t >> x >> y;
-        
-        if(x > n || y > n) res ++;
-        else{
+
+        if (x > n || y > n) res ++;
+        else {
             int px = find(x), py = find(y);
-            if(t == 1){  // x y 同类
-                if(px == py && (d[x] - d[y]) % 3)  res ++;  //同类但是模3距离不同 则矛盾 假话
-                else if(px != py){
-                    p[px] = py;
+            if (t == 1) { // x y 同类
+                if (px == py && (d[x] - d[y]) % 3)  res ++; //同类但是模3距离不同 则矛盾 假话
+                else if (px != py) { //合并集合 当真处理
+                    p[px] = py; // y 为 x的父节点 合并集合 更新d[px] 也就是x为根的集合root到新root(y的root)的距离
                     d[px] = d[y] - d[x];
                 }
-            }else{ // x 吃 y 
-                if(px == py && (d[x] - d[y]  -1) % 3) res ++;
-                else if(px != py){
+            } else { // x 吃 y
+                if (px == py && (d[x] - d[y]  - 1) % 3) res ++; //不符合x比y到root距离模3多1
+                else if (px != py) { //合并集合 当真处理
                     p[px] = py;
                     d[px] = d[y] + 1 - d[x];
                 }
             }
         }
-        
     }
     cout << res << endl;
-    
     return 0;
 }
